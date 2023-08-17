@@ -1,9 +1,16 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { useJournal } from '../JournalContext';
+import React, { useContext } from 'react';
+import { View, Text, Button, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { JournalContext } from '../JournalContext';
 
 const Home = ({ navigation }) => {
-    const { journalEntries } = useJournal();
+  const { journals } = useContext(JournalContext);
+
+  const renderJournalEntry = ({ item }) => (
+    <TouchableOpacity style={styles.journalBox} onPress={() => navigation.navigate('JournalDetail', { journal: item })}>
+      <Text style={styles.journalText}>Day: {item.day}</Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
@@ -12,18 +19,16 @@ const Home = ({ navigation }) => {
         <Button title="Clothing" onPress={() => navigation.navigate('Clothing')} />
         
       </View>
-      {journalEntries.map((entry, index) => (
-      <TouchableOpacity 
-        key={index}
-        style={styles.entryBox}
-        onPress={() => navigation.navigate('JournalDetail', { entry })}
-      >
-        <Text>Day: {entry.day}</Text>
-      </TouchableOpacity>
-    ))}
       <TouchableOpacity style={styles.plusButton} onPress={() => navigation.navigate('WorkoutJournal')}>
-                <Text style={styles.plusButtonText}>+</Text>
-            </TouchableOpacity>
+          <Text style={styles.plusButtonText}>+</Text>
+        </TouchableOpacity>
+
+      <FlatList 
+        data={journals}
+        renderItem={renderJournalEntry}
+        keyExtractor={item => item.id.toString()}
+        contentContainerStyle={styles.journalList}
+      />
     </View>
   );
 }
@@ -54,11 +59,28 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',  // Example color, adjust as needed
         alignItems: 'center',   // Center the text horizontally
         justifyContent: 'center', // Center the text vertically
+        zIndex: 1,
     },
     plusButtonText: {
         fontSize: 32,
         color: '#FFF',  // Example color, adjust as needed
     },
-});
+    journalList: {
+        alignItems: 'center',
+        marginTop: 20,
+      },
+      journalBox: {
+        width: 200,
+        height: 50,
+        backgroundColor: '#d3d3d3', // Example color, adjust as needed
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        marginBottom: 10,
+      },
+      journalText: {
+        fontSize: 16,
+      },
+    });
 
 export default Home;

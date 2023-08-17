@@ -1,35 +1,38 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { useJournal } from '../JournalContext';
-
-
+import { JournalContext } from '../JournalContext';
 
 const WorkoutJournal = ({ navigation }) => {
-  const { setJournalEntries } = useJournal();
   const [day, setDay] = useState("");
-  const [journalText, setJournalText] = useState("");
+  const [content, setContent] = useState("");
+  const { addJournalEntry } = useContext(JournalContext);
 
-  const handleDone = () => {
-    setJournalEntries(prevEntries => [...prevEntries, { day, journalText }]);
+  const handleSave = () => {
+    addJournalEntry(day, content);
     navigation.navigate('Home');
   };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>Workout Journal</Text>
       <View style={styles.contentCentered}>
+        <Text style={styles.subtitle}>Workout Journal</Text>
         <View style={styles.dayContainer}>
           <Text>Day:</Text>
-          <TextInput value={day}
-    onChangeText={setDay} placeholder="1" style={styles.inputDay} />
+          <TextInput 
+            placeholder="1" 
+            style={styles.inputDay} 
+            onChangeText={text => setDay(text)} 
+            value={day} 
+          />
         </View>
         <TextInput
-        value={journalText}
-        onChangeText={setJournalText}
           multiline
           placeholder="Journal your workout here..."
           style={styles.journalInput}
+          onChangeText={text => setContent(text)}
+          value={content}
         />
-        <Button title="Done" onPress={() => navigation.navigate('Home')} />
+        <Button title="Done" onPress={handleSave} />
       </View>
     </View>
   );
