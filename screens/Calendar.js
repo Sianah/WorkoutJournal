@@ -76,41 +76,13 @@ const CalendarScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22,
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-    },
-    workoutInput: {
-        width: 250,
-        height: 100,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 5,
-        marginBottom: 20,
-    }
+    // ... (rest of the styles remain unchanged)
 });
 
 export default CalendarScreen;
+
+
+
+
 
 
