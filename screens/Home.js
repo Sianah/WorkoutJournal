@@ -6,10 +6,12 @@ const Home = ({ navigation }) => {
   const { journals } = useContext(JournalContext);
 
   const renderJournalEntry = ({ item }) => (
-    <TouchableOpacity style={styles.journalBox} onPress={() => navigation.navigate('JournalDetail', { journal: item })}>
-      <Text style={styles.journalText}>Day: {item.day}</Text>
+    <TouchableOpacity 
+        style={styles.journalBox} 
+        onPress={() => navigation.navigate('JournalDetail', { id: item.id })}>
+        <Text style={styles.journalText}>Day: {item.day}</Text>
     </TouchableOpacity>
-  );
+);
 
   return (
     <View style={styles.container}>
