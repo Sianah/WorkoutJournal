@@ -1,19 +1,24 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
-export const JournalContext = createContext();
+const JournalContext = createContext();
 
-export const JournalProvider = ({ children }) => {
-  const [journalEntries, setJournalEntries] = useState([]);
+const JournalProvider = ({ children }) => {
+  const [journals, setJournals] = useState([]);
 
-  const addJournalEntry = (entry) => {
-    setJournalEntries(prevEntries => [...prevEntries, { ...entry, id: Date.now() }]);
+  const addJournal = (day, journalDetail) => {
+    // Create a new journal entry with a unique ID and add it to the journals state
+    const newJournal = { id: Date.now(), day, detail: journalDetail };
+    setJournals(prevJournals => [...prevJournals, newJournal]);
   };
 
   return (
-    <JournalContext.Provider value={{ journalEntries, addJournalEntry }}>
+    <JournalContext.Provider value={{ journals, addJournal }}>
       {children}
     </JournalContext.Provider>
   );
 };
+
+export { JournalContext, JournalProvider };
+
 
 
