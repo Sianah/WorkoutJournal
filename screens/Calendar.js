@@ -25,6 +25,7 @@ const CalendarScreen = ({ navigation }) => {
     };
 
     return (
+        
         <View style={styles.container}>
             <Calendar
                 onDayPress={(day) => handleDayPress(day)}

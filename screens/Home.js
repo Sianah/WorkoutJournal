@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { ImageBackground, View, Text, Button, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { JournalContext } from '../JournalContext';
 
 const Home = ({ navigation }) => {
@@ -14,6 +14,7 @@ const Home = ({ navigation }) => {
 );
 
   return (
+    <ImageBackground source={require('./smoke.jpg')} style={styles.backgroundImage}>
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button title="Calendar" onPress={() => navigation.navigate('Calendar')} />
@@ -32,6 +33,7 @@ const Home = ({ navigation }) => {
         contentContainerStyle={styles.journalList}
       />
     </View>
+    </ImageBackground>
   );
 }
 
@@ -82,6 +84,11 @@ const styles = StyleSheet.create({
       },
       journalText: {
         fontSize: 16,
+      },
+      backgroundImage: {
+        flex: 1,
+        resizeMode: "cover", // cover or contain depending on how you want to display the image
+        justifyContent: "center"
       },
     });
 

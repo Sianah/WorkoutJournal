@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 const Equipment = () => {
     return (
         <View>
-            <Text>Equipment Screen</Text>
+            <Text>Coming Soon</Text>
         </View>
     );
 }

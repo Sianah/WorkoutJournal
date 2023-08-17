@@ -14,6 +14,7 @@ const WorkoutJournal = ({ navigation }) => {
   };
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.contentCentered}>
         <Text style={styles.subtitle}>Workout Journal</Text>
@@ -36,6 +37,7 @@ const WorkoutJournal = ({ navigation }) => {
         <Button title="Done" onPress={handleDone} />
       </View>
     </View>
+    
   );
 }
 

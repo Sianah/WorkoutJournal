@@ -5,12 +5,13 @@ import ClothingBox from '../components/ClothingBox';
 const ClothingScreen = () => {
     return (
         <View>
-            <Text>MyGrind</Text>
-            <Text>Clothing</Text>
+            <Text>Coming Soon</Text>
+            {/*<Text>Clothing</Text>
             <ClothingBox itemType="shirts" />
             <ClothingBox itemType="pants" />
             <ClothingBox itemType="shoes" />
-            <ClothingBox itemType="other" />
+    <ClothingBox itemType="other" />*/}
+            
         </View>
     );
 }
