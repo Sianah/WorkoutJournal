@@ -23,12 +23,13 @@ const WorkoutJournal = ({ navigation }) => {
             <View style={styles.whiteBox}>
               <Text style={{ color: 'black' }}>Day:</Text>
               <TextInput
-                placeholder="1"
-                value={day}
-                placeholderTextColor="black"
-                onChangeText={setDay}
-                style={styles.inputDay}
-              />
+  placeholder="#"
+  value={day}
+  keyboardType="numeric" // This restricts the keyboard to numbers
+  placeholderTextColor="gray"
+  onChangeText={setDay}
+  style={[styles.inputDay, { color: 'black' }]} // Set the input text color to black
+/>
             </View>
           </View>
           <View style={styles.inputContainer}>

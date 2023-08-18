@@ -46,8 +46,6 @@ export default function App() {
   }}
    
 />
-
-
           <Stack.Screen name="Calendar" component={Calendar} />
           <Stack.Screen 
     name="Equipment" 
