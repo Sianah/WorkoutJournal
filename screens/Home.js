@@ -3,15 +3,30 @@ import { ImageBackground, View, Text, Button, StyleSheet, TouchableOpacity, Flat
 import { JournalContext } from '../JournalContext';
 
 const Home = ({ navigation }) => {
-  const { journals } = useContext(JournalContext);
+  const { journals, setJournals, updateJournals } = useContext(JournalContext);
 
-  const renderJournalEntry = ({ item }) => (
-    <TouchableOpacity 
-        style={styles.journalBox} 
-        onPress={() => navigation.navigate('JournalDetail', { id: item.id })}>
-        <Text style={styles.journalText}>Day: {item.day}</Text>
-    </TouchableOpacity>
+const handleDelete = (id) => {
+    const updatedJournals = journals.filter(journal => journal.id !== id);
+    setJournals(updatedJournals);
+    updateJournals(updatedJournals); // Persist the updated journals in AsyncStorage
+};
+
+
+const renderJournalEntry = ({ item }) => (
+  <TouchableOpacity 
+      style={styles.journalBox} 
+      onPress={() => navigation.navigate('JournalDetail', { id: item.id })}>
+      <View style={styles.journalEntryContainer}>
+          <Text style={styles.journalText}>Day: {item.day}</Text>
+          <TouchableOpacity 
+              style={styles.deleteButton}
+              onPress={() => handleDelete(item.id)}>
+              <Text style={styles.deleteButtonText}>Delete</Text>
+          </TouchableOpacity>
+      </View>
+  </TouchableOpacity>
 );
+
 
   return (
     <ImageBackground source={require('./smoke.jpg')} style={styles.backgroundImage}>
@@ -74,22 +89,47 @@ const styles = StyleSheet.create({
         marginTop: 20,
       },
       journalBox: {
-        width: 200,
-        height: 50,
-        backgroundColor: '#d3d3d3', // Example color, adjust as needed
-        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 5,
-        marginBottom: 10,
-      },
-      journalText: {
-        fontSize: 16,
-      },
+        justifyContent: 'space-between',
+        backgroundColor: '#d3d3d3',
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        borderRadius: 10,
+        marginBottom: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        width: '90%',
+        elevation: 5,  // for Android
+    },
+    journalText: {
+      fontSize: 18,
+      fontWeight: '600',
+  },
       backgroundImage: {
         flex: 1,
         resizeMode: "cover", // cover or contain depending on how you want to display the image
         justifyContent: "center"
       },
+      journalEntryContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+    },
+      
+    deleteButton: {
+      backgroundColor: 'transparent', // making it transparent
+  },
+      
+  deleteButtonText: {
+    color: 'red', // Just the color, without the background
+    fontSize: 18,
+    fontWeight: '600',
+},
+      
     });
 
 export default Home;
