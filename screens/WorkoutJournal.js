@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ImageBackground, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { TouchableOpacity, ImageBackground, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { JournalContext } from '../JournalContext';
 
 const WorkoutJournal = ({ navigation }) => {
@@ -18,26 +18,32 @@ const WorkoutJournal = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.contentCentered}>
           <Text style={styles.subtitle}>Workout Journal</Text>
+          <View style={styles.underline} />
           <View style={styles.dayContainer}>
-            <Text style={styles.dayLabel}>Day:</Text>
-            <TextInput
-              placeholder="1"
-              placeholderTextColor="gray"
-              value={day}
-              onChangeText={setDay}
-              style={styles.inputDay}
-            />
+            <View style={styles.whiteBox}>
+              <Text style={{ color: 'black' }}>Day:</Text>
+              <TextInput
+                placeholder="1"
+                value={day}
+                placeholderTextColor="black"
+                onChangeText={setDay}
+                style={styles.inputDay}
+              />
+            </View>
           </View>
-          <TextInput
-  multiline
-  placeholder="Journal your workout here..."
-  placeholderTextColor="gray" // This will make the placeholder text white
-  value={journalDetail}
-  onChangeText={setJournalDetail}
-  style={styles.journalInput}
-/>
-
-          <Button title="Done" onPress={handleDone} />
+          <View style={styles.inputContainer}>
+            <TextInput
+              multiline
+              placeholder="Journal your workout here..."
+              placeholderTextColor="gray"
+              value={journalDetail}
+              onChangeText={setJournalDetail}
+              style={styles.journalInput}
+            />
+             <TouchableOpacity style={styles.buttonContainer} onPress={handleDone}>
+        <Text style={styles.buttonText}>Done</Text>
+      </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>
@@ -48,13 +54,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    paddingTop: 70, 
+    paddingTop: 70,
+  },
+  underline: {
+    height: 2,
+    width: '60%',
+    backgroundColor: '#FFF',
+    marginTop: 1,
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: 32,  
+    fontSize: 28,
     textAlign: 'center',
-    marginBottom: 15,
-    color: 'white', 
+    marginBottom: 0,
+    marginTop: 30,
+    color: 'white',
   },
   contentCentered: {
     alignItems: 'center',
@@ -64,10 +78,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
-  dayLabel: {
-    fontSize: 20,  
-    color: 'white',
-  },
   inputDay: {
     fontSize: 18,
     marginLeft: 10,
@@ -75,31 +85,51 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     width: 40,
     textAlign: 'center',
-    color: 'white', // this will make the input text white
+    color: 'white',
     borderRadius: 5,
-},
-
-journalInput: {
-  fontSize: 18,
-  borderWidth: 1,
-  borderColor: '#FFF',
-  borderRadius:10,
-  width: '80%',
-  height: 150,
-  padding: 10,
-  marginBottom: 20,
-  textAlignVertical: 'top',
-  color: 'white', // this will make the multiline input text white
-},
-
+  },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover", 
+    resizeMode: "cover",
     justifyContent: "center"
+  },
+  whiteBox: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '40%'
+  },
+  inputContainer: {
+    borderWidth: 1,
+    borderColor: '#FFF',
+    borderRadius: 10,
+    width: '80%',
+    overflow: 'hidden',
+  },
+  journalInput: {
+    fontSize: 18,
+    height: 130,
+    padding: 10,
+    color: 'white',
+  },
+  buttonContainer: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'black',
   },
 });
 
 export default WorkoutJournal;
+
+
 
 
 

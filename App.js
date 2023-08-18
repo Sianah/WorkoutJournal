@@ -91,7 +91,22 @@ export default function App() {
     }} 
 />
 
-          <Stack.Screen name="WorkoutJournal" component={WorkoutJournal} options={{ title: 'MyGrind' }} />
+<Stack.Screen 
+    name="WorkoutJournal" 
+    component={WorkoutJournal}
+    options={{ 
+        headerTitle: () => (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 24 }}>My</Text>
+                <View style={{ backgroundColor: '#FFF', borderRadius: 8, paddingLeft: 5, paddingRight: 5, marginLeft: 1 }}>
+                    <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 24 }}>Grind</Text>
+                </View>
+            </View>
+        ),
+        headerTransparent: true,   
+        headerTintColor: '#FFF',
+    }} 
+  />
           <Stack.Screen name="JournalDetail" component={JournalDetail} />
         </Stack.Navigator>
       </NavigationContainer>
