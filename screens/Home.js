@@ -31,12 +31,18 @@ const renderJournalEntry = ({ item }) => (
   return (
     <ImageBackground source={require('./smoke.jpg')} style={styles.backgroundImage}>
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <Button title="Calendar" onPress={() => navigation.navigate('Calendar')} />
-        <Button title="Equipment" onPress={() => navigation.navigate('Equipment')} />
-        <Button title="Clothing" onPress={() => navigation.navigate('Clothing')} />
-        
-      </View>
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity onPress={() => navigation.navigate('Calendar')} style={styles.calendarButton}>
+        <Text style={styles.whiteText}>Calendar</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('Equipment')} style={styles.button}>
+        <Text style={styles.whiteText}>Equipment</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('Clothing')} style={styles.button}>
+        <Text style={styles.whiteText}>Clothing</Text>
+    </TouchableOpacity>
+</View>
+<View style={styles.line}></View>
       <TouchableOpacity style={styles.plusButton} onPress={() => navigation.navigate('WorkoutJournal')}>
           <Text style={styles.plusButtonText}>+</Text>
         </TouchableOpacity>
@@ -64,10 +70,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,  // Reduced marginBottom
     },
     buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 5,
+      marginTop:90,  // Adjust this value to position the buttons correctly
+  },
+  
     plusButton: {
         position: 'absolute',  // Make the position absolute
         bottom: 20,            // Position it 20 units from the bottom
@@ -75,14 +83,14 @@ const styles = StyleSheet.create({
         width: 60,             // Set the width
         height: 60,            // Set the height
         borderRadius: 30,      // Half of width/height to make it circular
-        backgroundColor: '#000',  // Example color, adjust as needed
+        backgroundColor: '#FFF',  // Example color, adjust as needed
         alignItems: 'center',   // Center the text horizontally
         justifyContent: 'center', // Center the text vertically
         zIndex: 1,
     },
     plusButtonText: {
         fontSize: 32,
-        color: '#FFF',  // Example color, adjust as needed
+        color: '#000',  // Example color, adjust as needed
     },
     journalList: {
         alignItems: 'center',
@@ -92,7 +100,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#FFF',
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 10,
@@ -129,6 +137,35 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
 },
+
+button: {
+  marginHorizontal: 20,  
+},
+
+calendarButton: {
+  marginHorizontal: 5,
+  marginTop: -7, // Moves the button up by 10 units
+  borderRadius: 10, 
+  borderWidth: 1,   
+  borderColor: '#FFF',
+  paddingHorizontal: 10,
+  paddingVertical: 5,
+},
+
+
+whiteText: {
+  color: '#FFF',
+  fontSize: 16,
+},
+
+line: {
+  height: 1,  // This will create a thin line
+  backgroundColor: '#FFF',  // Set this to white
+  marginTop: 0,  // Reduced margin to move the line closer to the buttons
+  marginBottom: 15,  // This will give some space below the line
+},
+
+
       
     });
 
